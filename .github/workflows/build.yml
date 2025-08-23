@@ -45,13 +45,13 @@ jobs:
       matrix:
         config:
           - platform: 'osx'
-            os: 'macos-14'
+            os: 'macos-latest'
 
           - platform: 'win32'
             os: windows-latest
 
           - platform: 'linux'
-            os: ubuntu-20.04
+            os: ubuntu-22.04
       
     steps:
     - uses: actions/checkout@v4
@@ -67,26 +67,7 @@ jobs:
       if: ${{ matrix.config.platform == 'linux' }}
       run: |
         sudo apt-get update
-        sudo apt-get install libsdl2-dev libfreetype6-dev
-
-    - name: 'Preparing build... (macOS)'
-      if: ${{ matrix.config.platform == 'osx' }}
-      run: |
-        export HOMEBREW_NO_INSTALL_CLEANUP=1
-        export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
-
-        # Remove conflicting brew items
-        brew remove --ignore-dependencies libpng brotli harfbuzz
-
-        # Delete fake harfbuzz if need be
-        if [ -f "/usr/local/lib/libharfbuzz.dylib" ]; then
-          sudo rm -r /usr/local/lib/libharfbuzz.dylib
-        fi
-
-        # And the .a for it as well
-        if [ -f "/usr/local/lib/libharfbuzz.a" ]; then
-          sudo rm -r /usr/local/lib/libharfbuzz.a
-        fi
+        sudo apt-get install libsdl3-dev libfontconfig-dev
 
     - name: 'Preparing build... (Windows)'
       if: ${{ matrix.config.platform == 'win32' }}
