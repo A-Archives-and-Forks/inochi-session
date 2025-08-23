@@ -5,8 +5,9 @@ on:
   workflow_call:
     inputs:
       target_ref:
-        required: true
+        required: false
         type: string
+        default: '${{ github.ref_name }}'
       variant:
         required: true
         type: string
