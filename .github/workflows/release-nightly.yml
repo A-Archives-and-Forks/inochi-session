@@ -21,6 +21,7 @@ jobs:
       variant: 'nightly'
       generate_version: true
       do_package: true
+      fail_fast: false
   
   gh-publish:
     needs: build

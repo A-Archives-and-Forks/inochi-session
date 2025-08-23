@@ -62,6 +62,11 @@ jobs:
       with:
         compiler: ldc-latest
 
+    - name: 'Preparing build...'
+      run: |
+        cd ..
+        git clone https://github.com/Inochi2D/inui.git
+
     - name: 'Preparing build... (Ubuntu)'
       if: ${{ matrix.config.platform == 'linux' }}
       run: |
