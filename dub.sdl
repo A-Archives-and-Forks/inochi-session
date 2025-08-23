@@ -17,6 +17,8 @@ copyFiles "res/licenses/*"
 dflags "-mscrtlib=msvcrt" platform="windows-ldc"
 lflags "-rpath=$$ORIGIN" platform="linux"
 
+buildRequirements "allowWarnings"
+
 stringImportPaths "res"
 
 // Uncomment following lines to enable JINS MEME Logger module.
