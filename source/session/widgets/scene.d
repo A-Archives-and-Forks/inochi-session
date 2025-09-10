@@ -10,56 +10,24 @@ import inui.core.msgbox;
 /**
     The Inochi2D Scene
 */
-class Scene : GLArea {
+class Scene : View {
 private:
     Puppet[] puppets;
 
 protected:
-    
-    override
-    void onGLInit() {
-        inInit(() => cast(double)Application.thisApp.currentTime());
-	    inGetCamera().scale = vec2(0.25);
-
-        foreach(arg; Application.thisApp.args) {
-            if (arg.exists) {
-                puppets ~= inLoadPuppet(arg);
-            }
-        }
-    }
-    
-    override
-    void onDrawGL(float delta) {
-        
-        inUpdate();
-        inBeginScene();
-        foreach(puppet; puppets) {
-            puppet.update();
-            puppet.draw();
-        }
-        inEndScene();
-        inPostProcessScene();
-
-        int w, h;
-		inGetViewport(w, h);
-
-        glBindFramebuffer(GL_FRAMEBUFFER, this.mainFBO);
-
-        glClearColor(0, 0, 0, 0);
-        glClear(GL_COLOR_BUFFER_BIT);
-		inDrawScene(vec4(0, 0, w, h));
-    }
 
     override
-    void onSizeChanged(vec2 oldSize, vec2 newSize) {
-        super.onSizeChanged(oldSize, newSize);
-        inSetViewport(cast(uint)newSize.x, cast(uint)newSize.y);
-    }
+    void onDocked(View to) { }
 
 public:
 
+    /**
+        Whether the view is "open" and being rendered.
+    */
+    override @property bool isOpen() => true;
+
     this() { 
-        super();
+        super("in_scene", "Scene");
         this.styleClass = "scene";
     }
 }

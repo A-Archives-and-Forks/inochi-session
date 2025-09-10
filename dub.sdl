@@ -50,14 +50,13 @@ configuration "linux-full" {
 }
 
 configuration "osx-full" {
-	platform "osx"
+	platforms "osx"
 	targetType "executable"
 	targetPath "out/Inochi Session.app/Contents/MacOS"
 	versions "InBranding"
 
 	subConfiguration "i2d-imgui" "dynamic_dynamicCRT"
 	lflags "-rpath" "@executable_path/../Frameworks" "-rpath" "@executable_path/."
-
 }
 
 configuration "win32-full" {
