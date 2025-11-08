@@ -102,7 +102,7 @@ public:
     @property NioBuffer vertexBuffer() => vtx_;
 
     /**
-        Vertex data of the puppet.
+        Index data of the puppet.
     */
     @property uint[] indices() => puppet.drawList.indices;
 
@@ -110,6 +110,11 @@ public:
         The puppet's index buffer.
     */
     @property NioBuffer indexBuffer() => idx_;
+
+    /**
+        Draw commands of the puppet.
+    */
+    @property DrawCmd[] commands() => puppet.drawList.commands;
 
     /**
         Total size of the puppet's buffers.

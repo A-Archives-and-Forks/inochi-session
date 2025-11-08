@@ -20,7 +20,7 @@ private:
     /// Render state
     NioStagingBuffer            staging_;
     NioTexture                  maskTarget_;
-    NioTexture[16][]            renderTargets_;
+    NioTexture[6][]             renderTargets_;
 
     /// Updates the puppets and their vertex data.
     void updatePuppets(NioCommandBuffer cmdbuffer, float delta) {

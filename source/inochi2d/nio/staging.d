@@ -1,6 +1,5 @@
 module inochi2d.nio.staging;
 import nulib.collections;
-import nulib.threading;
 import niobium;
 import numem;
 
@@ -9,6 +8,7 @@ import numem;
 */
 class NioStagingBuffer : NuRefCounted {
 private:
+@nogc:
     NioDevice                   device_;
     NioBuffer                   buffer_;
     size_t                      alignment_;
@@ -68,11 +68,11 @@ public:
             The size will be aligned to $(D alignment).
     */
     void resize(size_t newSize) {
-        if (newSize > staging_.size) {
-            staging_ = device_.createBuffer(NioBufferDescriptor(
+        if (newSize > buffer_.size) {
+            buffer_ = device_.createBuffer(NioBufferDescriptor(
                 storage: NioStorageMode.sharedStorage,
                 usage: NioBufferUsage.transfer,
-                size: nu_alignup(newSize, alignment_)
+                size: cast(uint)nu_alignup(newSize, alignment_)
             ));
         }
     }
