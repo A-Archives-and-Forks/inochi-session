@@ -1,18 +1,21 @@
 .dub
-.vs
 docs.json
 __dummy.html
 docs/
-out/
-
-.DS_Store
-*.res
 *.exe
+*.pdb
 *.o
 *.obj
 *.lst
-*.inp
-*.inx
+*.res
 
+out/
 dub.selections.json
-source/session/ver.d
+__dummy_docs/
+
+# Redub Junk
+.ldc2_cache
+
+# Other Junk
+.DS_Store
+.vscode/
